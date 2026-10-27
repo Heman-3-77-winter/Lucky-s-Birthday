@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 5 — A Little Trip, Someday</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body.travel-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .travel-page {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 800px);
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: 38px 0 55px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .travel-eyebrow {
+      color: #cbd5ff;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    .travel-page h1 {
+      color: #ffd1e7;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: normal;
+      line-height: 1.15;
+      margin: 0 0 18px;
+    }
+
+    .travel-subtitle {
+      max-width: 550px;
+      color: #e1e6ff;
+      font-size: 1rem;
+      line-height: 1.85;
+      margin: 0 auto 20px;
+    }
+
+    .travel-illustration {
+      width: min(100%, 520px);
+      min-height: 170px;
+      position: relative;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(220, 225, 255, 0.14);
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(132, 143, 222, 0.28), transparent 65%),
+        linear-gradient(180deg, rgba(27, 39, 87, 0.6), rgba(52, 44, 100, 0.25));
+      overflow: hidden;
+    }
+
+    .travel-moon {
+      position: absolute;
+      top: 18px;
+      right: 25px;
+      font-size: 2rem;
+      opacity: 0.9;
+    }
+
+    .travel-stars {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      color: #fff0bc;
+      line-height: 2.3;
+      letter-spacing: 0.9em;
+      font-size: 0.9rem;
+    }
+
+    .travel-road {
+      position: absolute;
+      bottom: -35px;
+      left: 50%;
+      width: 180px;
+      height: 105px;
+      border: 2px solid rgba(216, 207, 255, 0.45);
+      border-bottom: 0;
+      border-radius: 50% 50% 0 0;
+      transform: translateX(-50%) perspective(100px) rotateX(10deg);
+    }
+
+    .travel-road::after {
+      content: "";
+      position: absolute;
+      height: 65px;
+      left: 50%;
+      top: 20px;
+      border-left: 2px dashed rgba(255, 239, 192, 0.65);
+    }
+
+    .travel-bunny {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(5rem, 18vw, 7rem);
+      line-height: 1.2;
+      margin-top: 8px;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+      animation: shy-bunny 3s ease-in-out infinite;
+    }
+
+    @keyframes shy-bunny {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-5px) rotate(-3deg); }
+    }
+
+    .travel-message {
+      width: 100%;
+      max-width: 650px;
+      padding: clamp(20px, 4vw, 30px);
+      border: 1px solid rgba(255, 213, 236, 0.2);
+      border-radius: 24px;
+      background: rgba(18, 26, 66, 0.67);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      text-align: left;
+    }
+
+    .travel-message p {
+      color: #f0edff;
+      font-size: 1rem;
+      line-height: 1.95;
+      margin: 0 0 15px;
+    }
+
+    .travel-message p:last-child {
+      margin-bottom: 0;
+    }
+
+    .travel-message .highlight-line {
+      color: #ffd4e8;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .travel-signature {
+      color: #cbd5ff;
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.9rem;
+    }
+
+    .final-invitation {
+      margin-top: 25px;
+      padding: 14px 24px;
+      border: 0;
+      border-radius: 999px;
+      background: #f3c4e1;
+      color: #32274b;
+      font-size: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 6px 22px rgba(243, 196, 225, 0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .final-invitation:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(243, 196, 225, 0.23);
+    }
+
+    .travel-back {
+      display: inline-block;
+      color: #dce2ff;
+      text-decoration: none;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .travel-back:hover {
+      color: white;
+    }
+
+    @media (max-width: 560px) {
+      .travel-page {
+        width: min(100% - 22px, 800px);
+        padding-top: 28px;
+      }
+
+      .travel-illustration {
+        min-height: 150px;
+      }
+
+      .travel-message {
+        border-radius: 20px;
+      }
+
+      .travel-message p {
+        font-size: 0.96rem;
+        line-height: 1.85;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .travel-bunny,
+      .final-invitation {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="welcome-page travel-body">
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="travel-page">
+    <p class="travel-eyebrow">A little thought for the future ✦</p>
+
+    <h1>A little trip,<br> someday? 🌙</h1>
+
+    <p class="travel-subtitle">
+      No fixed itinerary. No perfect plan.
+      Just the possibility of somewhere new.
+    </p>
+
+    <div class="travel-illustration" aria-label="A little bunny beneath the moon on a winding road">
+      <div class="travel-stars" aria-hidden="true">✦ · ✧</div>
+      <div class="travel-moon" aria-hidden="true">☾</div>
+      <div class="travel-road" aria-hidden="true"></div>
+      <div class="travel-bunny" aria-hidden="true">🐰</div>
+    </div>
+
+    <section class="travel-message">
+      <p>
+        You know how people make plans for places they want to visit?
+        I think it's nice to have a few things to look forward to,
+        even if we don't know exactly when they'll happen.
+      </p>
+
+      <p>
+        So here's a tiny invitation: maybe someday, we get to explore
+        a new place, try something we've never tried before, laugh at
+        something completely stupid, and collect a memory that belongs
+        to that day alone.
+      </p>
+
+      <p>
+        And I think life is a little like that, too. We don't always
+        know which turn comes next. We can plan, change direction,
+        take a break when we're tired, and still find our way toward
+        something good.
+      </p>
+
+      <p>
+        You don't need to have your whole future figured out right now,
+        Lucky. One exam, one difficult day, or one uncertain chapter
+        doesn't get to decide the whole story.
+      </p>
+
+      <p class="highlight-line">
+        Some destinations are worth looking forward to.<br>
+        Some journeys are worth taking one step at a time. 💙
+      </p>
+    </section>
+
+    <p class="travel-signature">
+      Consider this a little wish for all the good things still ahead.
+    </p>
+
+    <a class="final-invitation" href="page6.html">
+      One last little surprise → 🎂
+    </a>
+
+    <a class="travel-back" href="page4.html">
+      ← Back to our little memory archive
+    </a>
+  </main>
+</body>
+</html>

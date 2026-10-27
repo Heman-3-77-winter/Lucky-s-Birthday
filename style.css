@@ -1,0 +1,394 @@
+
+/* =========================================
+   A LITTLE GIFT FOR LUCKY
+   Main styles for the welcome page
+   ========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+/* Page 1 stays fixed; the other pages can scroll */
+body.welcome-page {
+  overflow: hidden;
+}
+
+body:has(.qualities-page),
+body:has(.birthday-page) {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* The night sky */
+
+.welcome-page {
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 78%,
+      rgba(52, 84, 165, 0.55),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 15% 15%,
+      #17244f,
+      transparent 45%
+    ),
+    linear-gradient(
+      160deg,
+      #080d27 0%,
+      #111b43 52%,
+      #080d27 100%
+    );
+}
+
+/* Star layers */
+
+.sky-stars {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.stars-one {
+  background-image:
+    radial-gradient(circle, #fff 1px, transparent 2px),
+    radial-gradient(circle, #b9e6ff 1.5px, transparent 2.5px),
+    radial-gradient(circle, #ffd6eb 1px, transparent 2px),
+    radial-gradient(circle, #ffe9a6 1.5px, transparent 2.5px);
+
+  background-size:
+    97px 113px,
+    151px 137px,
+    183px 167px,
+    223px 191px;
+
+  background-position:
+    0 0,
+    31px 55px,
+    72px 22px,
+    14px 88px;
+
+  animation: starsTwinkle 4s ease-in-out infinite alternate;
+}
+
+.stars-two {
+  opacity: 0.65;
+
+  background-image:
+    radial-gradient(circle, #fff 2px, transparent 3px),
+    radial-gradient(circle, #91aaff 1px, transparent 2px);
+
+  background-size: 257px 229px, 137px 173px;
+  background-position: 47px 12px, 90px 43px;
+
+  animation: starsDrift 45s linear infinite;
+}
+
+@keyframes starsTwinkle {
+  from {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@keyframes starsDrift {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(35px);
+  }
+}
+
+/* Crescent moon */
+
+.moon {
+  position: absolute;
+  top: 9%;
+  right: 10%;
+  width: clamp(55px, 9vw, 105px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  background: #fff1bb;
+
+  box-shadow:
+    0 0 18px rgba(255, 237, 173, 0.75),
+    0 0 55px rgba(255, 223, 146, 0.3);
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  left: 30%;
+  top: -12%;
+
+  border-radius: 50%;
+  background: #10183a;
+}
+
+/* Main scene */
+
+.welcome-scene {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+/* Bunny illustration */
+
+.rabbit {
+  width: min(82vw, 430px);
+  max-height: 82svh;
+
+  position: relative;
+  z-index: 1;
+
+  animation: bunnyFloat 3.4s ease-in-out infinite;
+  transform-origin: center bottom;
+
+  filter:
+    drop-shadow(0 15px 25px rgba(0, 0, 0, 0.25));
+}
+
+.rabbit-art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+@keyframes bunnyFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+}
+
+/* Gentle ear movement */
+
+.ear {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+}
+
+.ear-back {
+  animation: earWiggle 3.4s ease-in-out infinite;
+}
+
+.ear-front {
+  animation: earWiggle 3.4s ease-in-out infinite reverse;
+}
+
+@keyframes earWiggle {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 4deg;
+  }
+}
+
+/* Gift click button */
+
+.gift-button {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 73.5%;
+  transform: translate(-50%, -50%);
+
+  width: clamp(76px, 17vw, 105px);
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  background: rgba(255, 182, 211, 0.12);
+  color: #fff3c8;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.25s ease;
+  animation: giftGlow 2s ease-in-out infinite alternate;
+}
+
+.gift-button:hover {
+  background: rgba(255, 182, 211, 0.24);
+}
+
+.gift-button.opening {
+  animation: giftOpen 0.65s ease forwards;
+  pointer-events: none;
+}
+
+.gift-button:hover {
+  transform: translate(-50%, -54%) scale(1.07);
+  background: rgba(255, 182, 211, 0.24);
+}
+
+.gift-button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 6px;
+}
+
+.gift-button-label {
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.18em;
+  text-shadow: 0 1px 8px #0008;
+}
+
+.gift-button-glow {
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(255, 224, 245, 0.55);
+  border-radius: 23px;
+  pointer-events: none;
+}
+
+@keyframes giftGlow {
+  from {
+    box-shadow: 0 0 8px rgba(255, 171, 213, 0.2);
+  }
+
+  to {
+    box-shadow:
+      0 0 28px rgba(255, 171, 213, 0.6),
+      0 0 55px rgba(151, 185, 255, 0.15);
+  }
+}
+
+/* The gift opens before navigation */
+
+.gift-button.opening {
+  animation: giftOpen 0.65s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes giftOpen {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(-50%, -50%) scale(1.25) rotate(8deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+/* Laptop and iPad landscape */
+
+@media (min-width: 700px) {
+  .rabbit {
+    width: min(58vw, 430px);
+  }
+
+  .gift-button {
+    top: 69%;
+  }
+}
+
+/* Smaller screens and iPad portrait */
+
+@media (max-width: 699px) {
+  .moon {
+    top: 8%;
+    right: 8%;
+  }
+
+  .rabbit {
+    width: min(94vw, 410px);
+  }
+
+  .gift-button {
+    top: 68%;
+  }
+}
+
+/* Short landscape screens */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .rabbit {
+    width: auto;
+    height: 88svh;
+    max-width: 65vw;
+  }
+
+  .rabbit-art {
+    height: 100%;
+    width: auto;
+  }
+
+  .gift-button {
+    top: 70%;
+    width: 66px;
+  }
+
+  .moon {
+    width: 48px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Let the longer birthday pages scroll */
+body.welcome-page:has(.birthday-page),
+body.welcome-page:has(.qualities-page),
+body.welcome-page.memory-body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}

@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d27">
+  <title>A Little Gift for Lucky</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="welcome-page">
+
+  <!-- Decorative night sky -->
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="welcome-scene">
+
+    <!-- Rabbit illustration -->
+    <div class="rabbit">
+      <svg class="rabbit-art"
+           viewBox="0 0 360 390"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-hidden="true">
+
+        <defs>
+          <radialGradient id="fur" cx="35%" cy="25%" r="75%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#e8eafa"/>
+          </radialGradient>
+
+          <linearGradient id="earPink" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffc8df"/>
+            <stop offset="100%" stop-color="#f18db6"/>
+          </linearGradient>
+
+          <linearGradient id="giftPink" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffb7d3"/>
+            <stop offset="100%" stop-color="#ed76ac"/>
+          </linearGradient>
+
+          <filter id="softShadow" x="-40%" y="-40%"
+                  width="180%" height="180%">
+            <feGaussianBlur stdDeviation="5"/>
+          </filter>
+        </defs>
+
+        <!-- Soft shadow beneath the rabbit -->
+        <ellipse cx="180" cy="356" rx="100" ry="15"
+                 fill="#000000" opacity=".25"
+                 filter="url(#softShadow)"/>
+
+        <!-- Back ear -->
+        <g class="ear ear-back">
+          <path d="M126 150 C87 92 91 17 127 12
+                   C160 10 163 93 157 146 Z"
+                fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+          <path d="M130 119 C109 77 111 37 128 32
+                   C145 43 145 87 143 119 Z"
+                fill="url(#earPink)"/>
+        </g>
+
+        <!-- Front ear -->
+        <g class="ear ear-front">
+          <path d="M174 143 C153 78 172 14 207 20
+                   C237 28 221 101 204 151 Z"
+                fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+          <path d="M183 119 C170 78 185 42 202 40
+                   C216 48 205 91 195 123 Z"
+                fill="url(#earPink)"/>
+        </g>
+
+        <!-- Body -->
+        <ellipse cx="178" cy="278" rx="91" ry="91"
+                 fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+
+        <!-- Little feet -->
+        <ellipse cx="125" cy="332" rx="42" ry="24"
+                 fill="#f8f8ff" stroke="#dce2f6" stroke-width="3"/>
+        <ellipse cx="224" cy="332" rx="42" ry="24"
+                 fill="#f8f8ff" stroke="#dce2f6" stroke-width="3"/>
+
+        <!-- Head -->
+        <ellipse cx="174" cy="176" rx="94" ry="83"
+                 fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+
+        <!-- Cheeks -->
+        <ellipse cx="112" cy="195" rx="17" ry="10"
+                 fill="#ffb5cf" opacity=".8"/>
+        <ellipse cx="236" cy="195" rx="17" ry="10"
+                 fill="#ffb5cf" opacity=".8"/>
+
+        <!-- Eyes -->
+        <ellipse cx="143" cy="169" rx="8" ry="12" fill="#29304c"/>
+        <ellipse cx="205" cy="169" rx="8" ry="12" fill="#29304c"/>
+        <circle cx="146" cy="165" r="3" fill="#ffffff"/>
+        <circle cx="208" cy="165" r="3" fill="#ffffff"/>
+
+        <!-- Nose and smile -->
+        <path d="M168 186 Q174 180 180 186 Q174 194 168 186"
+              fill="#f28db4"/>
+        <path d="M174 193 Q166 203 158 197 M174 193 Q182 203 190 197"
+              fill="none" stroke="#6d5872" stroke-width="2.5"
+              stroke-linecap="round"/>
+
+        <!-- Tiny arms -->
+        <ellipse cx="107" cy="256" rx="23" ry="39"
+                 transform="rotate(-25 107 256)"
+                 fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+        <ellipse cx="243" cy="256" rx="23" ry="39"
+                 transform="rotate(25 243 256)"
+                 fill="url(#fur)" stroke="#dce2f6" stroke-width="3"/>
+
+        <!-- Gift box -->
+        <g class="gift-box">
+          <rect x="123" y="242" width="112" height="91" rx="10"
+                fill="url(#giftPink)" stroke="#ffe8f1" stroke-width="3"/>
+
+          <!-- Ribbon -->
+          <rect x="168" y="242" width="22" height="91" fill="#fff0b8"/>
+          <rect x="123" y="265" width="112" height="17" fill="#fff0b8"/>
+
+          <!-- Bow -->
+          <path d="M179 245 C142 229 148 205 169 218
+                   L179 235 L189 218
+                   C211 204 218 230 179 245 Z"
+                fill="#ffe4a1" stroke="#fff4cf" stroke-width="2"/>
+
+          <circle cx="179" cy="242" r="8" fill="#fff8df"/>
+          <path d="M144 301 Q179 312 214 301"
+                fill="none" stroke="#ffffff" stroke-width="2" opacity=".6"/>
+        </g>
+      </svg>
+          <!-- Only interactive element on the first page: the gift -->
+    <button class="gift-button"
+            id="giftButton"
+            type="button"
+            aria-label="Open your birthday gift">
+      <span class="gift-button-glow"></span>
+      <span class="gift-button-label">OPEN</span>
+    </button>
+
+    </div>
+
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1e49">
+  <title>Happy Birthday, Lucky! 💙</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* PAGE 2 — BIRTHDAY */
+
+    .birthday-page {
+      min-height: 100vh;
+      min-height: 100svh;
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 850px);
+      margin: auto;
+      padding: 44px 0 55px;
+      text-align: center;
+    }
+
+    .birthday-heading {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      line-height: 1.08;
+      margin: 14px 0;
+      text-shadow: 0 0 30px #8dbbff55;
+    }
+
+    .birthday-heading span {
+      display: block;
+      color: #ffbed9;
+    }
+
+    .birthday-subtitle {
+      color: #c8dcff;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+    }
+
+    .birthday-age {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 22px;
+      margin: 16px auto 24px;
+      border: 1px solid #ffffff38;
+      border-radius: 50px;
+      background: #ffffff0d;
+      font-size: 1.1rem;
+    }
+
+    .birthday-age strong {
+      color: #ffe6a9;
+      font-size: 1.6rem;
+    }
+
+    .birthday-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+      text-align: left;
+    }
+
+    .birthday-card {
+      padding: 22px;
+      border: 1px solid #ffffff30;
+      border-radius: 24px;
+      background: #101f46bd;
+      box-shadow: 0 16px 45px #02071635;
+      backdrop-filter: blur(12px);
+    }
+
+    .calendar-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      color: #d7e8ff;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+    }
+
+    .calendar-title span:last-child {
+      color: #ffbed9;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 5px;
+      text-align: center;
+    }
+
+    .calendar-grid span {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      font-size: 0.76rem;
+      border-radius: 50%;
+    }
+
+    .weekday {
+      color: #9bb9e8;
+      font-size: 0.65rem !important;
+      font-weight: bold;
+    }
+
+    .date {
+      color: #eef4ff;
+      background: #ffffff09;
+    }
+
+    .birthday-date {
+      background: #ffb9d6;
+      color: #2b1731;
+      font-weight: bold;
+      box-shadow: 0 0 20px #ffb9d666;
+    }
+
+    .calendar-caption {
+      color: #b9cbe9;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      margin-top: 18px;
+    }
+
+    .letter-note {
+      font-size: 0.97rem;
+      line-height: 1.9;
+      color: #e8eeff;
+    }
+
+    .days-alive {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid #ffffff26;
+    }
+
+    .days-alive strong {
+      display: block;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      color: #ffbed9;
+    }
+
+    .days-alive span {
+      display: block;
+      color: #b9cbe9;
+      font-size: 0.82rem;
+      margin-top: 5px;
+    }
+
+    .bouquet-rabbit {
+      margin: 20px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      animation: birthdayBunny 3s ease-in-out infinite;
+    }
+
+    .bouquet-rabbit .bunny-face {
+      font-size: clamp(4rem, 10vw, 6rem);
+    }
+
+    .bouquet-rabbit .flowers {
+      font-size: clamp(2.8rem, 7vw, 4rem);
+      transform: rotate(-12deg);
+    }
+
+    @keyframes birthdayBunny {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .birthday-next {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      min-width: 155px;
+      margin-top: 30px;
+      padding: 15px 26px;
+      border-radius: 50px;
+      background: linear-gradient(120deg, #ffd0e3, #c3e6ff);
+      color: #17213e;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 8px 30px #0003;
+      transition: transform 0.2s ease;
+    }
+
+    .birthday-next:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* LIVE CALENDAR + FRIENDSHIP COUNTERS */
+
+    .present-card {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .present-eyebrow {
+      color: #ffbed9;
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      margin: 0 0 10px;
+    }
+
+    .present-heading {
+      color: #f1e7ff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.6rem, 5vw, 2.3rem);
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .present-description {
+      color: #b9cbe9;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 12px auto 24px;
+    }
+
+    .present-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .present-calendar {
+      min-width: 0;
+      padding: 18px;
+      border-radius: 18px;
+      background: #ffffff08;
+      border: 1px solid #ffffff1c;
+    }
+
+    .present-calendar .calendar-grid {
+      gap: 5px;
+    }
+
+    .present-calendar .calendar-grid span {
+      min-width: 0;
+    }
+
+    .today-date {
+      background: #c3e6ff;
+      color: #17213e;
+      font-weight: bold;
+      box-shadow: 0 0 18px #8dbbff88;
+    }
+
+    .present-counters {
+      display: grid;
+      gap: 14px;
+    }
+
+    .counter-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+      padding: 20px 12px;
+      text-align: center;
+      border: 1px solid #ffffff24;
+      border-radius: 18px;
+      background: #ffffff08;
+    }
+
+    .counter-emoji {
+      font-size: 1.6rem;
+    }
+
+    .counter-label {
+      color: #d7e8ff;
+      font-size: 0.88rem;
+    }
+
+    .counter-tile strong {
+      color: #ffbed9;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      overflow-wrap: anywhere;
+    }
+
+    .counter-small {
+      color: #9fb8df;
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    #daysTogether {
+      color: #c3e6ff;
+    }
+
+    @media (max-width: 650px) {
+      .present-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .present-calendar {
+        padding: 14px;
+      }
+
+      .present-card {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .birthday-page {
+        padding-top: 30px;
+      }
+
+      .birthday-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .birthday-card {
+        padding: 20px;
+      }
+
+      .birthday-heading {
+        font-size: clamp(2.5rem, 12vw, 4rem);
+      }
+
+      .birthday-age {
+        gap: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bouquet-rabbit {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="welcome-page">
+
+  <!-- Reuse the night sky from Page 1 -->
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="birthday-page">
+
+    <p class="birthday-subtitle">A LITTLE UNIVERSE, MADE FOR YOU ✦</p>
+
+    <h1 class="birthday-heading">
+      Happy Birthday
+      <span>Lucky 💙</span>
+    </h1>
+
+    <div class="birthday-age" aria-label="Turning eighteen">
+      <strong>17</strong>
+      <span>→</span>
+      <strong>18</strong>
+      <span>✨</span>
+    </div>
+
+    <div class="birthday-layout">
+
+      <!-- October 2008 calendar -->
+      <section class="birthday-card">
+        <div class="calendar-title">
+          <span>OCTOBER</span>
+          <span>2008</span>
+        </div>
+
+        <div class="calendar-grid" aria-label="October 2008 calendar">
+          <span class="weekday">MON</span>
+          <span class="weekday">TUE</span>
+          <span class="weekday">WED</span>
+          <span class="weekday">THU</span>
+          <span class="weekday">FRI</span>
+          <span class="weekday">SAT</span>
+          <span class="weekday">SUN</span>
+
+          <!-- October 1, 2008 was a Wednesday -->
+          <span></span>
+          <span></span>
+
+          <span class="date">1</span>
+          <span class="date">2</span>
+          <span class="date">3</span>
+          <span class="date">4</span>
+          <span class="date">5</span>
+
+          <span class="date">6</span>
+          <span class="date">7</span>
+          <span class="date">8</span>
+          <span class="date">9</span>
+          <span class="date">10</span>
+          <span class="date">11</span>
+          <span class="date">12</span>
+
+          <span class="date">13</span>
+          <span class="date">14</span>
+          <span class="date">15</span>
+          <span class="date">16</span>
+          <span class="date">17</span>
+          <span class="date">18</span>
+          <span class="date">19</span>
+
+          <span class="date">20</span>
+          <span class="date">21</span>
+          <span class="date">22</span>
+          <span class="date">23</span>
+          <span class="date">24</span>
+          <span class="date">25</span>
+          <span class="date">26</span>
+
+          <span class="date">27</span>
+          <span class="date birthday-date" aria-label="Lucky's birthday, October 28">28</span>
+          <span class="date">29</span>
+          <span class="date">30</span>
+          <span class="date">31</span>
+        </div>
+
+        <p class="calendar-caption">
+          October 28 — the day the world got a little more Lucky. 🌙
+        </p>
+      </section>
+
+      <!-- Birthday note -->
+      <section class="birthday-card">
+        <p class="letter-note">
+          Happy birthday to the most beautiful soul.
+          I love you so much. I made this for you.
+          Please explore this.
+
+          This is the memory I'm acknowledging
+          gratefully for having you in my life.
+          I've made this with a lot of effort and love.
+
+          I hope this brings a smile to your face
+          after seeing this. ❤️
+        </p>
+
+        <div class="days-alive">
+          <strong id="daysAlive">Calculating…</strong>
+          <span>days of you being you</span>
+        </div>
+      </section>
+
+    </div>
+    
+    <!-- Live calendar and friendship counters -->
+    <section class="birthday-card present-card">
+      <p class="present-eyebrow">AND HERE WE ARE, TODAY ✦</p>
+
+      <h2 class="present-heading">Meanwhile, in the present…</h2>
+
+      <p class="present-description">
+        The world keeps moving, and some lovely things keep growing. 💙
+      </p>
+
+      <div class="present-layout">
+
+        <!-- This calendar is generated from today's date -->
+        <div class="present-calendar">
+          <div class="calendar-title">
+            <span id="currentMonth">MONTH</span>
+            <span id="currentYear">YEAR</span>
+          </div>
+
+          <div
+            class="calendar-grid"
+            id="currentCalendar"
+            aria-label="Current month calendar"
+          ></div>
+
+          <p class="calendar-caption" id="todayCaption">
+            Finding today's date…
+          </p>
+        </div>
+
+        <!-- Both counters update automatically -->
+        
+<div class="present-counters">
+
+  <div class="counter-tile">
+    <span class="counter-emoji" aria-hidden="true">💙</span>
+    <span class="counter-label">Days since we met</span>
+    <strong id="daysTogether">Calculating…</strong>
+    <span class="counter-small">Since 2 August 2026</span>
+  </div>
+
+  <div class="counter-tile">
+    <span class="counter-emoji" aria-hidden="true">💗</span>
+    <span class="counter-label">A little part of your life</span>
+    <strong id="lifePercentage">Calculating…</strong>
+    <span class="counter-small">The time since our paths crossed ✨</span>
+  </div>
+
+</div>
+
+      </div>
+    </section>
+
+
+    <!-- Little bunny with flowers -->
+    <div class="bouquet-rabbit" aria-label="A rabbit holding a flower bouquet">
+      <span class="flowers" aria-hidden="true">💐</span>
+      <span class="bunny-face" aria-hidden="true">🐰</span>
+
+    </div>
+
+    <a class="birthday-next" href="page3.html">
+      Next <span aria-hidden="true">→</span>
+    </a>
+
+  </main>
+
+
+  
+<script>
+  // Important dates: month numbers start at 0 in JavaScript.
+  const birthDate = { year: 2008, month: 9, day: 28 };
+  const meetingDate = { year: 2026, month: 7, day: 2 };
+
+  const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+
+  function getDayNumber(year, month, day) {
+    return Math.floor(
+      Date.UTC(year, month, day) / MILLISECONDS_PER_DAY
+    );
+  }
+
+  // Update the original birth counter and the two new counters.
+  function updateCounters(today) {
+    const todayNumber = getDayNumber(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+
+    const birthNumber = getDayNumber(
+      birthDate.year,
+      birthDate.month,
+      birthDate.day
+    );
+
+    const meetingNumber = getDayNumber(
+      meetingDate.year,
+      meetingDate.month,
+      meetingDate.day
+    );
+
+    const daysAlive = todayNumber - birthNumber;
+    const daysTogether = todayNumber - meetingNumber;
+
+    // Original counter beside the 2008 calendar.
+    const aliveElement = document.getElementById("daysAlive");
+
+    // New counters.
+    const togetherElement = document.getElementById("daysTogether");
+    const percentageElement = document.getElementById("lifePercentage");
+
+    // Update the original birth counter.
+    if (aliveElement) {
+      aliveElement.textContent = daysAlive.toLocaleString("en-IN");
+    }
+
+    // Update the days-since-meeting counter.
+    if (togetherElement) {
+      togetherElement.textContent = daysTogether.toLocaleString("en-IN");
+    }
+
+    // Calculate the proportion of his life elapsed since you met.
+    if (percentageElement) {
+      const percentage = daysAlive > 0
+        ? (daysTogether / daysAlive) * 100
+        : 0;
+
+      percentageElement.textContent = percentage.toFixed(2) + "%";
+    }
+  }
+
+  // Build the calendar for the visitor's current local date.
+  function buildCurrentCalendar(today) {
+    const calendar = document.getElementById("currentCalendar");
+    const monthElement = document.getElementById("currentMonth");
+    const yearElement = document.getElementById("currentYear");
+    const caption = document.getElementById("todayCaption");
+
+    if (!calendar || !monthElement || !yearElement || !caption) {
+      console.error("Live calendar elements are missing from page2.html.");
+      return;
+    }
+
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const todayDate = today.getDate();
+
+    const monthName = new Intl.DateTimeFormat("en", {
+      month: "long"
+    }).format(today);
+
+    monthElement.textContent = monthName.toUpperCase();
+    yearElement.textContent = year;
+
+    // Start weeks on Monday.
+    const firstDay = new Date(year, month, 1).getDay();
+    const mondayOffset = (firstDay + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const weekdays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+    calendar.replaceChildren();
+
+    weekdays.forEach((weekday) => {
+      const cell = document.createElement("span");
+      cell.className = "weekday";
+      cell.textContent = weekday;
+      calendar.appendChild(cell);
+    });
+
+    // Blank cells before the first day of the month.
+    for (let i = 0; i < mondayOffset; i++) {
+      calendar.appendChild(document.createElement("span"));
+    }
+
+    // Add the dates and highlight today.
+    for (let day = 1; day <= daysInMonth; day++) {
+      const cell = document.createElement("span");
+      cell.className = "date";
+      cell.textContent = day;
+
+      if (day === todayDate) {
+        cell.classList.add("today-date");
+        cell.setAttribute("aria-current", "date");
+        cell.setAttribute(
+          "aria-label",
+          `Today, ${day} ${monthName} ${year}`
+        );
+      }
+
+      calendar.appendChild(cell);
+    }
+
+    caption.textContent = "Today is " +
+      new Intl.DateTimeFormat("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      }).format(today) + ". ✨";
+  }
+
+  function updatePageDates() {
+    const today = new Date();
+
+    updateCounters(today);
+    buildCurrentCalendar(today);
+  }
+
+  // Run when the page opens.
+  updatePageDates();
+</script>
+
+</body>
+</html>
+

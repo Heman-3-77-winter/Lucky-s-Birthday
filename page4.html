@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 4 — Our Little Memory Archive</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Page 4 only */
+    body.memory-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .memory-page {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 960px);
+      margin: 0 auto;
+      padding: 42px 0 70px;
+      text-align: center;
+    }
+
+    .memory-eyebrow {
+      color: #c9d7ff;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .memory-page h1 {
+      color: #ffd0e5;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin: 12px 0;
+    }
+
+    .memory-intro {
+      color: #e4e8ff;
+      line-height: 1.8;
+      max-width: 610px;
+      margin: 0 auto 28px;
+    }
+
+    .memory-card {
+      text-align: left;
+      margin: 24px 0;
+      padding: clamp(16px, 3vw, 26px);
+      border: 1px solid rgba(220, 224, 255, 0.2);
+      border-radius: 24px;
+      background: rgba(16, 24, 62, 0.68);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .memory-card h2 {
+      color: #ffe0ee;
+      font-family: Georgia, serif;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      margin: 0 0 8px;
+    }
+
+    .section-note {
+      color: #c7d0f5;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0 0 18px;
+    }
+
+    /* Swipeable photo strip */
+    
+.photo-strip {
+  display: grid;
+  grid-auto-columns: 145px;
+  grid-auto-flow: column;
+  gap: 12px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding: 4px 2px 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.photo-slot {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 4 / 4.5;
+  border-radius: 15px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #303d75, #77517f);
+  border: 1px solid rgba(255,255,255,0.2);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-placeholder {
+  padding: 12px;
+  text-align: center;
+  color: #fff0fa;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.photo-placeholder span {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+    .photo-caption {
+      color: #e5e8ff;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 10px 2px 0;
+    }
+
+    /* Voice-note players */
+    .audio-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .audio-item {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      align-items: center;
+      gap: 12px;
+      padding: 13px;
+      border-radius: 17px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .audio-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #e7b9dc;
+      color: #38284f;
+      font-size: 1.25rem;
+    }
+
+    .audio-info {
+      min-width: 0;
+    }
+
+    .audio-info strong {
+      display: block;
+      color: #fff0fa;
+      margin-bottom: 7px;
+    }
+
+    .audio-info audio {
+      width: 100%;
+      max-width: 100%;
+      height: 38px;
+    }
+
+    .audio-missing {
+      color: #c6cbea;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    /* Telugu chaos */
+    .dialogue {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .dialogue-bubble {
+      border-radius: 18px;
+      padding: 16px;
+      line-height: 1.7;
+      min-width: 0;
+    }
+
+    .dialogue-bubble.telugu {
+      background: rgba(137, 157, 255, 0.14);
+      border: 1px solid rgba(172, 186, 255, 0.2);
+    }
+
+    .dialogue-bubble.hindi {
+      background: rgba(255, 190, 220, 0.1);
+      border: 1px solid rgba(255, 190, 220, 0.18);
+    }
+
+    .dialogue-label {
+      display: block;
+      color: #d9caff;
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .dialogue-bubble p {
+      color: #f4efff;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .rabbit-stage {
+      padding: 12px 0 4px;
+      text-align: center;
+    }
+
+    .singing-rabbit {
+      display: inline-block;
+      font-size: clamp(4rem, 12vw, 6rem);
+      animation: bunny-bop 1s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+    }
+
+    .music-note {
+      display: inline-block;
+      color: #ffd0e5;
+      font-size: 1.7rem;
+      animation: note-float 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes bunny-bop {
+      from { transform: rotate(-5deg) translateY(0); }
+      to { transform: rotate(5deg) translateY(-8px); }
+    }
+
+    @keyframes note-float {
+      from { transform: translateY(5px) rotate(-8deg); }
+      to { transform: translateY(-8px) rotate(10deg); }
+    }
+
+    
+.consent-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  padding: 19px;
+  margin-top: 24px;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 210, 235, 0.3);
+  color: #fff0fa;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.consent-box input {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: #f4b9dc;
+  cursor: pointer;
+}
+
+
+    .memory-next {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: #f3c4e1;
+      color: #32274b;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .memory-next:hover {
+      transform: translateY(-2px);
+    }
+
+    .memory-next.locked {
+      opacity: 0.35;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+
+    .back-link {
+      display: inline-block;
+      color: #dbe0ff;
+      margin-top: 18px;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: white;
+    }
+
+    @media (max-width: 560px) {
+      .memory-page {
+        width: min(100% - 22px, 960px);
+        padding-top: 30px;
+      }
+
+      .dialogue {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-strip {
+        grid-auto-columns: minmax(175px, 76%);
+      }
+
+      .memory-card {
+        border-radius: 19px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .singing-rabbit,
+      .music-note {
+        animation: none;
+      }
+
+      .memory-next {
+        transition: none;
+      }
+    }
+    
+.audio-category {
+  margin-top: 17px;
+}
+
+.audio-category h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #e7d9ff;
+  font-size: 0.98rem;
+  margin: 0 0 9px;
+}
+
+.audio-category h3 span {
+  flex-shrink: 0;
+  color: #bfcaf4;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.category-note {
+  color: #c7d0f5;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.compact-audio {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  margin-top: 7px;
+  border-radius: 13px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.compact-audio .audio-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.compact-audio .audio-info strong {
+  display: block;
+  color: #fff0fa;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.compact-audio audio {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: 30px;
+}
+
+@media (max-width: 560px) {
+  .compact-audio {
+    grid-template-columns: 30px minmax(0, 1fr);
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .compact-audio .audio-icon {
+    width: 29px;
+    height: 29px;
+  }
+
+  .audio-category h3 {
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+</head>
+
+<body class="welcome-page memory-body">
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="memory-page">
+    <p class="memory-eyebrow">A tiny archive of us ✦</p>
+    <h1>Little Things, Lucky 💗</h1>
+    <p class="memory-intro">
+      Some memories deserve their own little corner of the universe.
+      Here are a few things I wanted to save for you.
+      Take your time. There's no rush.
+    </p>
+
+    <section class="memory-card">
+      <h2>📸 The little gallery</h2>
+      <p class="section-note">
+        Two little spaces for pictures. Swipe sideways on your iPad
+        or scroll across to explore them.
+      </p>
+
+      <div class="photo-strip">
+        <div class="photo-slot">
+          <div class="photo-frame">
+            <img
+              src="assets/lucky-1.jpg"
+              alt="A memory saved for Lucky"
+              onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+            >
+            <div class="photo-placeholder" hidden>
+              <span>🌙</span>
+              Add your first photo<br>
+              <small>assets/lucky-1.jpg</small>
+            </div>
+          </div>
+          <p class="photo-caption">A little moment worth keeping ✨</p>
+        </div>
+
+        <div class="photo-slot">
+          <div class="photo-frame">
+            <img
+              src="assets/lucky-2.jpg"
+              alt="Another memory saved for Lucky"
+              onerror="this.style.display='none'; this.nextElementSibling.hidden=false;"
+            >
+            <div class="photo-placeholder" hidden>
+              <span>🐇</span>
+              Add your second photo<br>
+              <small>assets/lucky-2.jpg</small>
+            </div>
+          </div>
+          <p class="photo-caption">Another tiny piece of the story 💗</p>
+        </div>
+      
+<div class="photo-slot">
+  <div class="photo-frame">
+    <div class="photo-placeholder">
+      <span>🫶</span>
+      A photo from you,<br>maybe someday?
+    </div>
+  </div>
+  <p class="photo-caption">Reserved for a memory you give me 💌</p>
+</div>
+
+<div class="photo-slot">
+  <div class="photo-frame">
+    <div class="photo-placeholder">
+      <span>✨</span>
+      This little space<br>is waiting for you
+    </div>
+  </div>
+  <p class="photo-caption">Future memory, currently loading…</p>
+</div>
+
+      </div>
+    </section>
+
+    
+<section class="memory-card">
+  <h2>🎧 The voice-note archive</h2>
+  <p class="section-note">
+    Eight little recordings. Four categories. A very questionable
+    collection of evidence against you. 💗
+  </p>
+
+  <div class="audio-category">
+    <h3>🎶 The singing collection <span>01–03</span></h3>
+
+    <div class="compact-audio">
+      <span class="audio-icon">🎵</span>
+      <div class="audio-info">
+        <strong>Track 01 · The first performance</strong>
+        <audio controls preload="none">
+          <source src="assets/singing-1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <div class="compact-audio">
+      <span class="audio-icon">🎤</span>
+      <div class="audio-info">
+        <strong>Track 02 · Encore, please</strong>
+        <audio controls preload="none">
+          <source src="assets/singing-2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <div class="compact-audio">
+      <span class="audio-icon">🎶</span>
+      <div class="audio-info">
+        <strong>Track 03 · One more song</strong>
+        <audio controls preload="none">
+          <source src="assets/singing-3.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-category">
+    <h3>🤐 Telugu audio evidence <span>04–05</span></h3>
+    <p class="category-note">
+      Classified recordings. The speaker remains blissfully unaware. 😭
+    </p>
+
+    <div class="compact-audio">
+      <span class="audio-icon">🫢</span>
+      <div class="audio-info">
+        <strong>Track 04 · Exhibit A</strong>
+        <audio controls preload="none">
+          <source src="assets/telugu-1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <div class="compact-audio">
+      <span class="audio-icon">😂</span>
+      <div class="audio-info">
+        <strong>Track 05 · Exhibit B</strong>
+        <audio controls preload="none">
+          <source src="assets/telugu-2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-category">
+    <h3>🤣 Hindi dialogue department <span>06–07</span></h3>
+
+    <div class="compact-audio">
+      <span class="audio-icon">💀</span>
+      <div class="audio-info">
+        <strong>Track 06 · The legendary line</strong>
+        <audio controls preload="none">
+          <source src="assets/hindi-1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+
+    <div class="compact-audio">
+      <span class="audio-icon">😭</span>
+      <div class="audio-info">
+        <strong>Track 07 · An equally serious incident</strong>
+        <audio controls preload="none">
+          <source src="assets/hindi-2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-category">
+    <h3>🧠 A little wisdom <span>08</span></h3>
+
+    <div class="compact-audio">
+      <span class="audio-icon">🌙</span>
+      <div class="audio-info">
+        <strong>Track 08 · Words worth keeping</strong>
+        <audio controls preload="none">
+          <source src="assets/wisdom.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <section class="memory-card">
+      <h2>🎤 Live from the bunny stage</h2>
+      <div class="rabbit-stage" aria-label="A little singing rabbit">
+        <span class="music-note" aria-hidden="true">♫</span>
+        <span class="singing-rabbit" aria-hidden="true">🐰</span>
+        <span class="music-note" aria-hidden="true">♪</span>
+      </div>
+      <p class="section-note" style="text-align:center;margin-bottom:0">
+        One tiny bunny. Two imaginary microphones.
+        An audience of exactly one very special human.
+        Please welcome… Lucky's personal concert! 🩷
+      </p>
+    </section>
+
+
+<label class="consent-box" for="memoryConsent">
+  <input type="checkbox" id="memoryConsent">
+  <span>I'm not angry because hemanth used my photos and audio without my consent. I believe that hemanth was meant to make me happy.</span>
+</label>
+
+
+    <a class="memory-next locked" id="memoryNext" href="page5.html"
+       aria-disabled="true" tabindex="-1">
+      Continue to the next chapter →
+    </a>
+
+    <br>
+    <a class="back-link" href="page3.html">← Back to the eight little bubbles</a>
+  </main>
+
+  <script>
+    const consentCheckbox = document.getElementById("memoryConsent");
+    const nextButton = document.getElementById("memoryNext");
+
+    consentCheckbox.addEventListener("change", () => {
+      const allowed = consentCheckbox.checked;
+
+      nextButton.classList.toggle("locked", !allowed);
+      nextButton.setAttribute("aria-disabled", String(!allowed));
+
+      if (allowed) {
+        nextButton.removeAttribute("tabindex");
+      } else {
+        nextButton.setAttribute("tabindex", "-1");
+      }
+    });
+
+    // Hide the missing-audio hint when a real audio file can load.
+    document.querySelectorAll(".audio-info audio").forEach((player) => {
+      const hint = player.parentElement.querySelector(".audio-missing");
+
+      player.addEventListener("canplay", () => {
+        if (hint) hint.hidden = true;
+      });
+    });
+  </script>
+</body>
+</html>

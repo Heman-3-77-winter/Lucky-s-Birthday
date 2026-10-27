@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 18th Birthday, Lucky 💗</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body.final-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .final-page {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 30px, 820px);
+      margin: 0 auto;
+      padding: 35px 0 65px;
+      text-align: center;
+    }
+
+    .final-eyebrow {
+      color: #d4d9ff;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+
+    .final-page h1 {
+      color: #ffd0e5;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      line-height: 1.12;
+      font-weight: normal;
+      margin: 10px 0;
+      text-shadow: 0 0 30px rgba(255, 192, 226, 0.15);
+    }
+
+    .final-subtitle {
+      color: #e0e5ff;
+      font-size: 1rem;
+      line-height: 1.8;
+      margin: 12px auto 20px;
+      max-width: 580px;
+    }
+
+    .birthday-stage {
+      position: relative;
+      width: min(100%, 540px);
+      margin: 0 auto 22px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(226, 215, 255, 0.17);
+      border-radius: 28px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(192, 127, 209, 0.22), transparent 65%),
+        linear-gradient(180deg, rgba(30, 40, 87, 0.65), rgba(65, 44, 100, 0.25));
+    }
+
+    .cake-sparkles {
+      position: absolute;
+      inset: 15px;
+      color: #fff0bb;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+
+    .cake-sparkles span {
+      position: absolute;
+      animation: sparkle 2s ease-in-out infinite alternate;
+    }
+
+    .cake-sparkles span:nth-child(1) {
+      top: 12%;
+      left: 15%;
+    }
+
+    .cake-sparkles span:nth-child(2) {
+      top: 30%;
+      right: 15%;
+      animation-delay: 0.6s;
+    }
+
+    .cake-sparkles span:nth-child(3) {
+      bottom: 23%;
+      left: 22%;
+      animation-delay: 1s;
+    }
+
+    .cake-sparkles span:nth-child(4) {
+      bottom: 20%;
+      right: 23%;
+      animation-delay: 0.3s;
+    }
+
+    @keyframes sparkle {
+      from { opacity: 0.4; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.15); }
+    }
+
+    .birthday-cake {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(5rem, 17vw, 7.5rem);
+      line-height: 1.2;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.16));
+      animation: cake-float 3s ease-in-out infinite;
+    }
+
+    .cake-caption {
+      color: #ffe0ef;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      margin: 10px 0 20px;
+    }
+
+    @keyframes cake-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    .music-control {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 17px;
+      border: 1px solid rgba(255, 220, 240, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff0fa;
+      font: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .music-control:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .music-hint {
+      color: #bfcaf4;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin: 9px auto 0;
+      max-width: 420px;
+    }
+
+    .letter-card {
+      margin: 28px auto 0;
+      padding: clamp(22px, 5vw, 42px);
+      border: 1px solid rgba(255, 211, 235, 0.24);
+      border-radius: 25px;
+      background: rgba(15, 23, 62, 0.77);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(10px);
+      text-align: left;
+    }
+
+    .letter-heading {
+      color: #ffd0e5;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      text-align: center;
+      margin: 0 0 24px;
+      font-weight: normal;
+    }
+
+    .letter-content {
+      color: #f0efff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1rem, 2.5vw, 1.08rem);
+      line-height: 1.95;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .letter-content p {
+      margin: 0 0 19px;
+    }
+
+    .letter-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .letter-signoff {
+      color: #ffd0e5;
+    }
+
+    .final-footer {
+      color: #cbd3fa;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-top: 26px;
+    }
+
+    .final-footer .heart {
+      display: inline-block;
+      color: #ffbedb;
+      animation: heart-beat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .restart-link {
+      display: inline-block;
+      color: #dce2ff;
+      margin-top: 17px;
+      text-decoration: none;
+    }
+
+    .restart-link:hover {
+      color: white;
+    }
+
+    @media (max-width: 560px) {
+      .final-page {
+        width: min(100% - 22px, 820px);
+        padding-top: 25px;
+      }
+
+      .birthday-stage {
+        min-height: 210px;
+        border-radius: 22px;
+      }
+
+      .letter-card {
+        border-radius: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cake-sparkles span,
+      .birthday-cake,
+      .final-footer .heart {
+        animation: none;
+      }
+
+      .music-control {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="welcome-page final-body">
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="final-page">
+    <p class="final-eyebrow">You made it to the last little chapter ✦</p>
+
+    <h1>Happy 18th Birthday,<br>Lucky! 🎂</h1>
+
+    <p class="final-subtitle">
+      Eighteen years of being you, and so many more chapters still unwritten.
+      I hope this little corner of the internet makes you smile.
+    </p>
+
+    <section class="birthday-stage" aria-label="Birthday cake and sparkles">
+      <div class="cake-sparkles" aria-hidden="true">
+        <span>✦</span>
+        <span>✧</span>
+        <span>✦</span>
+        <span>✧</span>
+      </div>
+
+      <div class="birthday-cake" aria-hidden="true">🎂</div>
+      <p class="cake-caption">Make a little wish, birthday boy. ✨</p>
+    </section>
+
+    <button class="music-control" id="musicButton" type="button">
+      <span id="musicIcon" aria-hidden="true">▶</span>
+      <span id="musicLabel">Play your birthday music</span>
+    </button>
+
+    <p class="music-hint" id="musicHint">
+      Tap to play or pause the birthday tune. Your browser may require
+      you to press play before music can begin.
+    </p>
+
+    <audio id="birthdayMusic" preload="none" loop>
+      <source src="assets/birthday-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <article class="letter-card">
+      <h2 class="letter-heading">A little letter, just for you 💌</h2>
+
+      <div class="letter-content">
+        <p>Dear Lucky,</p>
+
+        <p>You probably know how much I enjoy talking to you,
+but I don't know if I have ever explained it properly.
+We met as strangers. Somewhere along the way, your words
+became something I look forward to. Sometimes a simple
+conversation is enough to make my day better.</p>
+
+        <p>I admire how you think, how you speak, how you face
+things realistically, and how you can be honest without
+making me feel small.</p>
+
+        <p>I hope you never mistake being practical for having to
+be strong every second. You can have difficult days,
+change your mind, rest, and start again. None of that
+takes away from the person you are.</p>
+
+        <p>You don't need to earn your worth through an exam,
+achievements, or being the person with all the answers.
+I'm glad our paths crossed. I'm glad we had that first
+call. And I'm glad that, out of all the random people
+on the internet, I got to know you.</p>
+
+        <p>Happy birthday, Lucky. Here's to more calls, more laughs,
+more Minecraft chaos, and hopefully a few adventures
+outside the internet.</p>
+
+        <p>Until then, this little corner of the internet is yours.</p>
+
+        <p class="letter-signoff">— Someone who is very glad you're here. ❤️</p>
+      </div>
+    </article>
+
+    <footer class="final-footer">
+      Made with a little effort and a lot of love.
+      <span class="heart">♥</span>
+    </footer>
+
+    <a class="restart-link" href="index.html">↶ Visit the beginning again</a>
+  </main>
+
+  <script>
+    const birthdayMusic = document.getElementById("birthdayMusic");
+    const musicButton = document.getElementById("musicButton");
+    const musicIcon = document.getElementById("musicIcon");
+    const musicLabel = document.getElementById("musicLabel");
+    const musicHint = document.getElementById("musicHint");
+
+    musicButton.addEventListener("click", async () => {
+      if (birthdayMusic.paused) {
+        try {
+          await birthdayMusic.play();
+          musicIcon.textContent = "Ⅱ";
+          musicLabel.textContent = "Pause birthday music";
+          musicHint.textContent = "A little birthday soundtrack, just for you. 💗";
+        } catch (error) {
+          musicHint.textContent =
+            "Couldn't play the music yet. Check that assets/birthday-music.mp3 exists and try again.";
+        }
+      } else {
+        birthdayMusic.pause();
+        musicIcon.textContent = "▶";
+        musicLabel.textContent = "Play your birthday music";
+        musicHint.textContent = "Paused. Tap whenever you want to hear it again.";
+      }
+    });
+
+    birthdayMusic.addEventListener("ended", () => {
+      musicIcon.textContent = "▶";
+      musicLabel.textContent = "Play your birthday music";
+    });
+
+    birthdayMusic.addEventListener("error", () => {
+      musicHint.textContent =
+        "Add your chosen music file at assets/birthday-music.mp3 to enable playback.";
+    });
+  </script>
+</body>
+</html>

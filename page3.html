@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#182847">
+  <title>What I Love About You 💗</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===================================
+       PAGE 3 — EIGHT LITTLE TRUTHS
+       =================================== */
+
+.qualities-page {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 32px, 1000px);
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: auto;
+  padding: 45px 0 70px;
+  text-align: center;
+}
+
+    .qualities-eyebrow {
+      color: #c8dcff;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .qualities-title {
+      margin: 14px 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.5rem, 7vw, 4.6rem);
+      line-height: 1.12;
+    }
+
+    .qualities-title span {
+      color: #ffbed9;
+    }
+
+    .qualities-intro {
+      max-width: 540px;
+      margin: 0 auto;
+      color: #d3def5;
+      line-height: 1.7;
+    }
+
+    .bubble-progress {
+      display: inline-block;
+      margin: 20px auto 5px;
+      padding: 9px 16px;
+      border: 1px solid #ffffff2e;
+      border-radius: 30px;
+      color: #e8efff;
+      background: #ffffff0b;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive bubble layout */
+
+    .bubble-field {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(14px, 3vw, 30px);
+      margin: 35px auto 25px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .bubble {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: min(100%, 175px);
+      aspect-ratio: 1;
+      padding: 16px;
+
+      border: 2px solid #ffffffc9;
+      border-radius: 50%;
+      cursor: pointer;
+      color: #25304c;
+
+      font-size: clamp(2rem, 4vw, 3rem);
+      box-shadow:
+        inset -8px -10px 18px #28304b16,
+        inset 5px 5px 12px #ffffff9c,
+        0 12px 30px #0002;
+
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        filter 0.25s ease;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bubble:hover {
+      transform: translateY(-6px) scale(1.04);
+      filter: brightness(1.04);
+    }
+
+    .bubble:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 5px;
+    }
+
+    .bubble:active {
+      transform: scale(0.96);
+    }
+
+    /* Eight different bubble colours */
+
+    .bubble-1 {
+      background: linear-gradient(145deg, #ffe3ee, #ffabc9);
+    }
+
+    .bubble-2 {
+      background: linear-gradient(145deg, #d9f0ff, #a6d5ff);
+    }
+
+    .bubble-3 {
+      background: linear-gradient(145deg, #fff1c5, #ffd88b);
+    }
+
+    .bubble-4 {
+      background: linear-gradient(145deg, #f0e5ff, #cbb8ff);
+    }
+
+    .bubble-5 {
+      background: linear-gradient(145deg, #d9f8e6, #a6e7c5);
+    }
+
+    .bubble-6 {
+      background: linear-gradient(145deg, #ffe6d8, #ffc5a9);
+    }
+
+    .bubble-7 {
+      background: linear-gradient(145deg, #d7f8f6, #9ee5e1);
+    }
+
+    .bubble-8 {
+      background: linear-gradient(145deg, #ffe0eb, #f6aaca);
+    }
+
+    /* The message is initially hidden inside every bubble */
+
+    .bubble-message {
+      display: none;
+      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+      line-height: 1.45;
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .bubble.popped {
+      cursor: default;
+      transform: scale(0.96);
+      box-shadow:
+        inset 0 0 18px #ffffffb0,
+        0 0 25px #ffffff15;
+    }
+
+    .bubble.popped .bubble-icon {
+      display: none;
+    }
+
+    .bubble.popped .bubble-message {
+      display: block;
+      animation: messageAppear 0.35s ease both;
+    }
+
+    .bubble.popped:hover {
+      transform: scale(0.96);
+      filter: none;
+    }
+
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Message displayed beneath the bubbles */
+
+    .reveal-box {
+      width: min(100%, 650px);
+      min-height: 95px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto;
+      padding: 20px;
+
+      border: 1px solid #ffffff2b;
+      border-radius: 20px;
+      background: #0a1535a6;
+
+      color: #f2f5ff;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .reveal-box p {
+      margin: 0;
+    }
+
+    .reveal-box .reveal-hint {
+      color: #b9c9e9;
+    }
+
+    /* Next button */
+
+    .qualities-next {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      min-width: 155px;
+      margin-top: 25px;
+      padding: 15px 26px;
+
+      border-radius: 50px;
+      background: linear-gradient(120deg, #ffd0e3, #c3e6ff);
+      color: #17213e;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 8px 30px #0003;
+
+      animation: nextAppear 0.5s ease both;
+    }
+
+    .qualities-next:hover {
+      filter: brightness(1.06);
+    }
+
+    .qualities-next[hidden] {
+      display: none;
+    }
+
+    @keyframes nextAppear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tablet and iPad portrait */
+
+    @media (max-width: 700px) {
+      .qualities-page {
+        padding-top: 32px;
+      }
+
+      .bubble-field {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        max-width: 460px;
+      }
+
+      .bubble {
+        width: min(100%, 155px);
+      }
+
+      .bubble-message {
+        font-size: clamp(0.78rem, 3vw, 0.95rem);
+      }
+    }
+
+    /* Very narrow screens */
+
+    @media (max-width: 360px) {
+      .bubble-field {
+        gap: 12px;
+      }
+
+      .bubble {
+        padding: 10px;
+      }
+
+      .bubble-message {
+        font-size: 0.73rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bubble,
+      .qualities-next {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="welcome-page">
+
+  <!-- Shared night-sky background -->
+  <div class="sky-stars stars-one" aria-hidden="true"></div>
+  <div class="sky-stars stars-two" aria-hidden="true"></div>
+  <div class="moon" aria-hidden="true"></div>
+
+  <main class="qualities-page">
+
+    <p class="qualities-eyebrow">
+      PAGE 03 · EIGHT LITTLE TRUTHS
+    </p>
+
+    <h1 class="qualities-title">
+      What I love <span>about you</span>
+    </h1>
+
+    <p class="qualities-intro">
+      There are things about you that I don't want to leave unsaid.
+      Tap every bubble to discover one. No skipping, Lucky. ♡
+    </p>
+
+    <div class="bubble-progress" id="bubbleProgress" aria-live="polite">
+      ✨ 0 of 8 discovered
+    </div>
+
+    <section class="bubble-field" id="bubbleField"
+             aria-label="Eight qualities to discover">
+
+      <button class="bubble bubble-1" type="button"
+              data-message="You make me laugh. Even ordinary conversations with you can turn into my favourite part of the day.">
+        <span class="bubble-icon" aria-hidden="true">☀</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-2" type="button"
+              data-message="Your dignity is on a legendary level. Honestly, the standards are terrifying. 👑">
+        <span class="bubble-icon" aria-hidden="true">♛</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-3" type="button"
+              data-message="You emit positivity in your own way. You can make things feel a little less heavy.">
+        <span class="bubble-icon" aria-hidden="true">✦</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-4" type="button"
+              data-message="Your eyes sparkle. This is a completely unbiased and extremely scientific observation.">
+        <span class="bubble-icon" aria-hidden="true">♡</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-5" type="button"
+              data-message="Your articulation. Your words actually land, and I admire how well you express what you mean.">
+        <span class="bubble-icon" aria-hidden="true">✎</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-6" type="button"
+              data-message="You give premium life advice. Practical, thoughtful, and somehow honest without making me feel small.">
+        <span class="bubble-icon" aria-hidden="true">✧</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-7" type="button"
+              data-message="Your presence gives me comfort and a smile. Talking to you genuinely makes my day better.">
+        <span class="bubble-icon" aria-hidden="true">☾</span>
+        <span class="bubble-message"></span>
+      </button>
+
+      <button class="bubble bubble-8" type="button"
+              data-message="You're honest, but not cruel. You're kind. I hope you know how much that matters. 🤍">
+        <span class="bubble-icon" aria-hidden="true">♡</span>
+        <span class="bubble-message"></span>
+      </button>
+
+    </section>
+
+    <section class="reveal-box" aria-live="polite">
+      <p class="reveal-hint" id="revealMessage">
+        Pick a bubble, Lucky. There's something inside. ✨
+      </p>
+    </section>
+
+    <a class="qualities-next" id="qualitiesNext"
+       href="page4.html" hidden>
+      All discovered! Next <span aria-hidden="true">→</span>
+    </a>
+
+  </main>
+
+  <script>
+    // PAGE 3 — bubble interactions
+    const bubbles = document.querySelectorAll(".bubble");
+    const progress = document.getElementById("bubbleProgress");
+    const revealMessage = document.getElementById("revealMessage");
+    const nextButton = document.getElementById("qualitiesNext");
+
+    let discovered = 0;
+
+    bubbles.forEach((bubble, index) => {
+      bubble.addEventListener("click", () => {
+
+        // A bubble can only be discovered once.
+        if (bubble.classList.contains("popped")) {
+          return;
+        }
+
+        bubble.classList.add("popped");
+        bubble.querySelector(".bubble-message").textContent =
+          bubble.dataset.message;
+
+        bubble.setAttribute("aria-pressed", "true");
+        bubble.setAttribute(
+          "aria-label",
+          "Discovered message " + (index + 1)
+        );
+
+        discovered++;
+
+        progress.textContent =
+          "✨ " + discovered + " of " + bubbles.length + " discovered";
+
+        revealMessage.textContent = bubble.dataset.message;
+
+        // Unlock the next page only when every bubble is popped.
+        if (discovered === bubbles.length) {
+          revealMessage.textContent =
+            "That's all eight. These are just some of the reasons you're special to me. Happy exploring, Lucky. 🤍";
+
+          nextButton.hidden = false;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
